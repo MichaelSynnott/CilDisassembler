@@ -107,6 +107,8 @@
             // HasHeader
             // 
             this.HasHeader.AutoSize = true;
+            this.HasHeader.Checked = true;
+            this.HasHeader.CheckState = System.Windows.Forms.CheckState.Checked;
             this.HasHeader.Location = new System.Drawing.Point(18, 18);
             this.HasHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HasHeader.Name = "HasHeader";
@@ -320,7 +322,6 @@
             this.extraDataSections.Size = new System.Drawing.Size(1264, 235);
             this.extraDataSections.TabIndex = 4;
             this.extraDataSections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ExtraDataSections_CellClick);
-
             // 
             // IsException
             // 
