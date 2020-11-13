@@ -2,18 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
     using System.Drawing;
     using System.Drawing.Text;
     using System.Globalization;
-    using System.Linq;
-    using System.Reflection;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
-    using System.Windows.Forms.VisualStyles;
 
 
     public partial class MainForm : Form
@@ -313,7 +306,6 @@
 
             _trackBack.Push(e.RowIndex);
 
-            //this.disassembly.FirstDisplayedScrollingRowIndex = i;
             NavigateToCodeRowAndHighlight(i);
         }
 
@@ -363,7 +355,6 @@
             var i = -1;
             while (this.disassembly.Rows[++i].Cells[0].Value as string != tryStartOffset && i < this.disassembly.Rows.Count) ;
 
-            //this.disassembly.FirstDisplayedScrollingRowIndex = i;
             NavigateToCodeRowAndHighlight(i);
 
             while (this.disassembly.Rows[i].Cells[0].Value as string != tryEndOffset && i < this.disassembly.Rows.Count)
@@ -394,7 +385,6 @@
             if (_trackBack.Count == 0) return;
 
             var row = _trackBack.Pop();
-            //this.disassembly.FirstDisplayedScrollingRowIndex = row;
             NavigateToCodeRowAndHighlight(row);
         }
 
@@ -404,7 +394,7 @@
             this.disassembly.FirstDisplayedScrollingRowIndex = this.disassembly.SelectedRows[0].Index;
         }
 
-        private void zoom_Scroll(object sender, EventArgs e)
+        private void Zoom_Scroll(object sender, EventArgs e)
         {
             float fontSize = this.zoom.Value;
             ScaleCodeGrid(fontSize);
@@ -414,6 +404,12 @@
         {
             var existingFont = this.disassembly.DefaultCellStyle.Font;
             this.disassembly.DefaultCellStyle.Font = new Font(existingFont.FontFamily, fontSize);
+        }
+
+        private void Zoom_DoubleClick(object sender, EventArgs e)
+        {
+            this.zoom.Value = 10;
+            ScaleCodeGrid(10);
         }
     }
 }

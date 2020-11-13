@@ -63,12 +63,12 @@
             this.HandlerEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Token = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.disassembly = new System.Windows.Forms.DataGridView();
-            this.Offset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Operand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.back = new System.Windows.Forms.Button();
             this.goToSelectedRow = new System.Windows.Forms.Button();
             this.zoom = new System.Windows.Forms.TrackBar();
+            this.Offset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Operand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.HeaderInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extraDataSections)).BeginInit();
@@ -424,30 +424,6 @@
             this.disassembly.TabIndex = 5;
             this.disassembly.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Disassembly_CellDoubleClick);
             // 
-            // Offset
-            // 
-            this.Offset.HeaderText = "Offset";
-            this.Offset.Name = "Offset";
-            this.Offset.ReadOnly = true;
-            this.Offset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Offset.Width = 59;
-            // 
-            // OpCode
-            // 
-            this.OpCode.HeaderText = "OpCode";
-            this.OpCode.Name = "OpCode";
-            this.OpCode.ReadOnly = true;
-            this.OpCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OpCode.Width = 74;
-            // 
-            // Operand
-            // 
-            this.Operand.HeaderText = "Operand";
-            this.Operand.Name = "Operand";
-            this.Operand.ReadOnly = true;
-            this.Operand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Operand.Width = 77;
-            // 
             // back
             // 
             this.back.Image = ((System.Drawing.Image)(resources.GetObject("back.Image")));
@@ -476,6 +452,7 @@
             // 
             // zoom
             // 
+            this.zoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zoom.LargeChange = 2;
             this.zoom.Location = new System.Drawing.Point(1189, 469);
             this.zoom.Maximum = 30;
@@ -484,7 +461,35 @@
             this.zoom.Size = new System.Drawing.Size(335, 69);
             this.zoom.TabIndex = 7;
             this.zoom.Value = 10;
-            this.zoom.Scroll += new System.EventHandler(this.zoom_Scroll);
+            this.zoom.DoubleClick += new System.EventHandler(this.Zoom_DoubleClick);
+            this.zoom.Scroll += new System.EventHandler(this.Zoom_Scroll);
+            // 
+            // Offset
+            // 
+            this.Offset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Offset.HeaderText = "Offset";
+            this.Offset.Name = "Offset";
+            this.Offset.ReadOnly = true;
+            this.Offset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Offset.Width = 59;
+            // 
+            // OpCode
+            // 
+            this.OpCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OpCode.HeaderText = "OpCode";
+            this.OpCode.Name = "OpCode";
+            this.OpCode.ReadOnly = true;
+            this.OpCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OpCode.Width = 74;
+            // 
+            // Operand
+            // 
+            this.Operand.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Operand.HeaderText = "Operand";
+            this.Operand.Name = "Operand";
+            this.Operand.ReadOnly = true;
+            this.Operand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Operand.Width = 77;
             // 
             // MainForm
             // 
@@ -548,12 +553,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HandlerStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn HandlerEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Token;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Offset;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OpCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Operand;
         private Button back;
         private Button goToSelectedRow;
         private TrackBar zoom;
+        private DataGridViewTextBoxColumn Offset;
+        private DataGridViewTextBoxColumn OpCode;
+        private DataGridViewTextBoxColumn Operand;
     }
 }
 
