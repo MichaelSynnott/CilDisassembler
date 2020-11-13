@@ -79,6 +79,7 @@
             this.RawBytes.Font = new System.Drawing.Font("Consolas", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RawBytes.Location = new System.Drawing.Point(18, 54);
             this.RawBytes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RawBytes.MaxLength = 524288;
             this.RawBytes.Multiline = true;
             this.RawBytes.Name = "RawBytes";
             this.RawBytes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
