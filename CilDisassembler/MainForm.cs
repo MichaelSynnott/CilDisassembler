@@ -10,6 +10,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Text;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Windows.Forms.VisualStyles;
@@ -20,6 +21,10 @@
         private string _codeBytes;
         private int _codeSize;
         private int _headerSize;
+
+        private readonly Stack<int> _trackBack = new Stack<int>();
+
+        private int _highlightedRow = -1;
 
         public MainForm()
         {
@@ -37,6 +42,8 @@
         {
             try
             {
+                _trackBack.Clear();
+
                 this.toolStripStatusLabel1.Text = string.Empty;
                 this.disassembly.Text = string.Empty;
                 ResetHeaderTextBoxes();
@@ -51,6 +58,8 @@
 
                 this.extraDataSections.Rows.Clear();
                 PopulateExtraDataSectionsGrid(codeAndHeaderBytes);
+
+                _trackBack.Push(0);
             }
             catch (Exception ex)
             {
@@ -198,6 +207,7 @@
             {
                 var row = rowData.Split(',');
                 this.disassembly.Rows.Add(row[0], row[1], row[2]);
+                this.disassembly.Rows[this.disassembly.Rows.Count - 1].MinimumHeight = 2;
             }
         }
 
@@ -289,14 +299,50 @@
         {
             if (this.disassembly.Rows.Count == 0) return;
 
-            ResetCodeGridBackground();
-            this.disassembly.FirstDisplayedScrollingRowIndex = 0;
+            var row = this.disassembly.Rows[e.RowIndex];
+            var operand = row.Cells[2].Value as string;
+
+            if (string.IsNullOrEmpty(operand)) return;
+
+            var targetAddress = ExtractBranchTargetAddress(operand);
+
+            if (string.IsNullOrEmpty(targetAddress)) return;
+
+            var i = -1;
+            while (this.disassembly.Rows[++i].Cells[0].Value as string != targetAddress && i < this.disassembly.Rows.Count) ;
+
+            _trackBack.Push(e.RowIndex);
+
+            //this.disassembly.FirstDisplayedScrollingRowIndex = i;
+            NavigateToCodeRowAndHighlight(i);
         }
 
+        private void NavigateToCodeRowAndHighlight(int row)
+        {
+            if (_highlightedRow != -1)
+            {
+                this.disassembly.Rows[_highlightedRow].Selected = false;
+            }
+
+            this.disassembly.Rows[row].Selected = true;
+            this.disassembly.FirstDisplayedScrollingRowIndex = row;
+            
+            _highlightedRow = row;
+        }
+
+        private static string ExtractBranchTargetAddress(string operand)
+        {
+            var pattern = @"^.*\(\s(IL_[0-9A-F]{4})\s\)$";
+            var regex = new Regex(pattern);
+            var m = regex.Match(operand);
+            return !m.Success ? null : m.Groups[1].Value;
+        }
 
         private void ExtraDataSections_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1 || this.extraDataSections.Rows.Count == 0) return;
+
+            _trackBack.Push(this.disassembly.FirstDisplayedScrollingRowIndex);
 
             ResetCodeGridBackground();
 
@@ -317,7 +363,8 @@
             var i = -1;
             while (this.disassembly.Rows[++i].Cells[0].Value as string != tryStartOffset && i < this.disassembly.Rows.Count) ;
 
-            this.disassembly.FirstDisplayedScrollingRowIndex = i;
+            //this.disassembly.FirstDisplayedScrollingRowIndex = i;
+            NavigateToCodeRowAndHighlight(i);
 
             while (this.disassembly.Rows[i].Cells[0].Value as string != tryEndOffset && i < this.disassembly.Rows.Count)
             {
@@ -340,6 +387,33 @@
             {
                 this.disassembly.Rows[r].DefaultCellStyle.BackColor = SystemColors.Window;
             }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            if (_trackBack.Count == 0) return;
+
+            var row = _trackBack.Pop();
+            //this.disassembly.FirstDisplayedScrollingRowIndex = row;
+            NavigateToCodeRowAndHighlight(row);
+        }
+
+        private void GoToSelectedRow_Click(object sender, EventArgs e)
+        {
+            if (this.disassembly.SelectedRows.Count == 0) return;
+            this.disassembly.FirstDisplayedScrollingRowIndex = this.disassembly.SelectedRows[0].Index;
+        }
+
+        private void zoom_Scroll(object sender, EventArgs e)
+        {
+            float fontSize = this.zoom.Value;
+            ScaleCodeGrid(fontSize);
+        }
+
+        private void ScaleCodeGrid(float fontSize)
+        {
+            var existingFont = this.disassembly.DefaultCellStyle.Font;
+            this.disassembly.DefaultCellStyle.Font = new Font(existingFont.FontFamily, fontSize);
         }
     }
 }
