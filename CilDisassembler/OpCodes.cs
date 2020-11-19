@@ -66,6 +66,8 @@ namespace CilDisassembler
                 return string.Empty;
             }
 
+            var opCodeOffset = i / 2;
+
             var sb = new StringBuilder();
 
             var argLength = opCodeData.OperandCount * 2;
@@ -101,17 +103,24 @@ namespace CilDisassembler
                 }
             }
 
-            if (opCodeData.HasArgList)
+            if (opCodeData.Name == "switch")
             {
-                var argCount = int.Parse(littleEndian.Substring(2), NumberStyles.AllowHexSpecifier);
-                for (int j = 0; j < argCount; j++)
+                var caseCount = int.Parse(littleEndian.Substring(2), NumberStyles.AllowHexSpecifier);
+
+                var nextOpCodeAddress = opCodeOffset
+                                        + 4 // Size of 'case count' argument in bytes
+                                        + (caseCount * 4);  // number of case arguments time the size of an Int32 in bytes
+
+                for (var j = 0; j < caseCount; j++)
                 {
                     argLength = 8;
                     bigEndian = bytes.Substring(i, argLength);
                     i += argLength;
 
                     littleEndian = ToLittleEndian(bigEndian);
-                    sb.Append(littleEndian).Append(" ");
+
+                    var jumpSize = int.Parse(littleEndian.Substring(2), NumberStyles.AllowHexSpecifier);
+                    sb.Append(littleEndian).Append($"( IL_{nextOpCodeAddress + jumpSize,4:X4} ) ");
                 }
             }
             return sb.ToString();

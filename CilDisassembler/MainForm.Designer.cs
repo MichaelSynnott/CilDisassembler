@@ -63,12 +63,12 @@
             this.HandlerEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Token = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.disassembly = new System.Windows.Forms.DataGridView();
-            this.back = new System.Windows.Forms.Button();
-            this.goToSelectedRow = new System.Windows.Forms.Button();
-            this.zoom = new System.Windows.Forms.TrackBar();
             this.Offset = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Operand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.back = new System.Windows.Forms.Button();
+            this.goToSelectedRow = new System.Windows.Forms.Button();
+            this.zoom = new System.Windows.Forms.TrackBar();
             this.statusStrip1.SuspendLayout();
             this.HeaderInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.extraDataSections)).BeginInit();
@@ -141,7 +141,6 @@
             this.HeaderInfo.Controls.Add(this.label4);
             this.HeaderInfo.Controls.Add(this.label3);
             this.HeaderInfo.Controls.Add(this.label1);
-            this.HeaderInfo.Enabled = false;
             this.HeaderInfo.Location = new System.Drawing.Point(125, 14);
             this.HeaderInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HeaderInfo.Name = "HeaderInfo";
@@ -424,6 +423,33 @@
             this.disassembly.TabIndex = 5;
             this.disassembly.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Disassembly_CellDoubleClick);
             // 
+            // Offset
+            // 
+            this.Offset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Offset.HeaderText = "Offset";
+            this.Offset.Name = "Offset";
+            this.Offset.ReadOnly = true;
+            this.Offset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Offset.Width = 59;
+            // 
+            // OpCode
+            // 
+            this.OpCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OpCode.HeaderText = "OpCode";
+            this.OpCode.Name = "OpCode";
+            this.OpCode.ReadOnly = true;
+            this.OpCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OpCode.Width = 74;
+            // 
+            // Operand
+            // 
+            this.Operand.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Operand.HeaderText = "Operand";
+            this.Operand.Name = "Operand";
+            this.Operand.ReadOnly = true;
+            this.Operand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Operand.Width = 77;
+            // 
             // back
             // 
             this.back.Image = ((System.Drawing.Image)(resources.GetObject("back.Image")));
@@ -463,33 +489,6 @@
             this.zoom.Value = 10;
             this.zoom.DoubleClick += new System.EventHandler(this.Zoom_DoubleClick);
             this.zoom.Scroll += new System.EventHandler(this.Zoom_Scroll);
-            // 
-            // Offset
-            // 
-            this.Offset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Offset.HeaderText = "Offset";
-            this.Offset.Name = "Offset";
-            this.Offset.ReadOnly = true;
-            this.Offset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Offset.Width = 59;
-            // 
-            // OpCode
-            // 
-            this.OpCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OpCode.HeaderText = "OpCode";
-            this.OpCode.Name = "OpCode";
-            this.OpCode.ReadOnly = true;
-            this.OpCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OpCode.Width = 74;
-            // 
-            // Operand
-            // 
-            this.Operand.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Operand.HeaderText = "Operand";
-            this.Operand.Name = "Operand";
-            this.Operand.ReadOnly = true;
-            this.Operand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Operand.Width = 77;
             // 
             // MainForm
             // 
