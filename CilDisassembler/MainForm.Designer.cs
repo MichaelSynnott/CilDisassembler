@@ -107,7 +107,7 @@
             // 
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 15);
             // 
             // HasHeader
             // 
@@ -321,6 +321,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.extraDataSections.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.extraDataSections.RowHeadersVisible = false;
+            this.extraDataSections.RowHeadersWidth = 62;
             this.extraDataSections.RowTemplate.Height = 28;
             this.extraDataSections.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.extraDataSections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -331,6 +332,7 @@
             // IsException
             // 
             this.IsException.HeaderText = "Exception";
+            this.IsException.MinimumWidth = 8;
             this.IsException.Name = "IsException";
             this.IsException.ReadOnly = true;
             this.IsException.Width = 35;
@@ -338,6 +340,7 @@
             // IsFilter
             // 
             this.IsFilter.HeaderText = "Filter";
+            this.IsFilter.MinimumWidth = 8;
             this.IsFilter.Name = "IsFilter";
             this.IsFilter.ReadOnly = true;
             this.IsFilter.Width = 35;
@@ -345,6 +348,7 @@
             // IsFinally
             // 
             this.IsFinally.HeaderText = "Finally";
+            this.IsFinally.MinimumWidth = 8;
             this.IsFinally.Name = "IsFinally";
             this.IsFinally.ReadOnly = true;
             this.IsFinally.Width = 35;
@@ -352,6 +356,7 @@
             // IsFault
             // 
             this.IsFault.HeaderText = "Fault";
+            this.IsFault.MinimumWidth = 8;
             this.IsFault.Name = "IsFault";
             this.IsFault.ReadOnly = true;
             this.IsFault.Width = 35;
@@ -359,12 +364,15 @@
             // TryStart
             // 
             this.TryStart.HeaderText = "Try Start";
+            this.TryStart.MinimumWidth = 8;
             this.TryStart.Name = "TryStart";
             this.TryStart.ReadOnly = true;
+            this.TryStart.Width = 150;
             // 
             // TryEnd
             // 
             this.TryEnd.HeaderText = "Try End";
+            this.TryEnd.MinimumWidth = 8;
             this.TryEnd.Name = "TryEnd";
             this.TryEnd.ReadOnly = true;
             this.TryEnd.Width = 200;
@@ -372,12 +380,15 @@
             // HandlerStart
             // 
             this.HandlerStart.HeaderText = "Handler Start";
+            this.HandlerStart.MinimumWidth = 8;
             this.HandlerStart.Name = "HandlerStart";
             this.HandlerStart.ReadOnly = true;
+            this.HandlerStart.Width = 150;
             // 
             // HandlerEnd
             // 
             this.HandlerEnd.HeaderText = "Handler End";
+            this.HandlerEnd.MinimumWidth = 8;
             this.HandlerEnd.Name = "HandlerEnd";
             this.HandlerEnd.ReadOnly = true;
             this.HandlerEnd.Width = 200;
@@ -385,6 +396,7 @@
             // Token
             // 
             this.Token.HeaderText = "Token";
+            this.Token.MinimumWidth = 8;
             this.Token.Name = "Token";
             this.Token.ReadOnly = true;
             this.Token.Width = 150;
@@ -412,10 +424,10 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.disassembly.DefaultCellStyle = dataGridViewCellStyle2;
             this.disassembly.Location = new System.Drawing.Point(125, 544);
-            this.disassembly.MultiSelect = false;
             this.disassembly.Name = "disassembly";
             this.disassembly.ReadOnly = true;
             this.disassembly.RowHeadersVisible = false;
+            this.disassembly.RowHeadersWidth = 62;
             this.disassembly.RowTemplate.Height = 28;
             this.disassembly.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.disassembly.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -427,6 +439,7 @@
             // 
             this.Offset.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Offset.HeaderText = "Offset";
+            this.Offset.MinimumWidth = 8;
             this.Offset.Name = "Offset";
             this.Offset.ReadOnly = true;
             this.Offset.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -436,6 +449,7 @@
             // 
             this.OpCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.OpCode.HeaderText = "OpCode";
+            this.OpCode.MinimumWidth = 8;
             this.OpCode.Name = "OpCode";
             this.OpCode.ReadOnly = true;
             this.OpCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -445,6 +459,7 @@
             // 
             this.Operand.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Operand.HeaderText = "Operand";
+            this.Operand.MinimumWidth = 8;
             this.Operand.Name = "Operand";
             this.Operand.ReadOnly = true;
             this.Operand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
