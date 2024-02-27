@@ -13,7 +13,7 @@ Internally, the parser works on a string of contiguous hex bytes, as in `0001020
 * 0x (non-case-sensitive)
 * Newline characters (\n and \r)
 
-Therefore, the following, with or without embedded newline characters, are all valid and equivalent input to the tool:
+Therefore, the following, in lowercase, uppercase or mixed case, with or without embedded newline characters, are all valid and equivalent input to the tool:
 * `000102030405060708090a0b0c0d0e0f10`
 * `00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 10`
 * `0x000x010x020x030x040x050x060x070x080x090x0a0x0b0x0c0x0d0x0e0x0f0x10`
